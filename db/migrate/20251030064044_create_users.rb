@@ -42,7 +42,7 @@ class CreateUsers < ActiveRecord::Migration[8.1]
       t.boolean :hide_email, default: false, null: false
 
       # show_alias = db.Column(db.Boolean, default=False, nullable=False)
-      t.boolean :show_alias, default: false, null:false
+      t.boolean :show_alias, default: false, null: false
 
       # registration_ip = db.Column(db.String(45))  # IPv6 addresses can be up to 45 chars
       # these two could be the postgres ip type i think
@@ -56,9 +56,9 @@ class CreateUsers < ActiveRecord::Migration[8.1]
 
       # # RBAC relationships - specify foreign_keys to avoid ambiguity with assigned_by
       # roles = db.relationship('Role', secondary='user_role',
-                             # primaryjoin='User.id==UserRole.user_id',
-                             # secondaryjoin='Role.id==UserRole.role_id',
-                             # backref='users', lazy='dynamic')
+      # primaryjoin='User.id==UserRole.user_id',
+      # secondaryjoin='Role.id==UserRole.role_id',
+      # backref='users', lazy='dynamic')
 
       t.timestamps
     end
