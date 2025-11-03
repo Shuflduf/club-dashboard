@@ -41,7 +41,7 @@ plugin :solid_queue if ENV["SOLID_QUEUE_IN_PUMA"]
 # In other environments, only set the PID file if requested.
 pidfile ENV["PIDFILE"] if ENV["PIDFILE"]
 
-ssl_bind '0.0.0.0', '3001', {
-  key: ENV.fetch("SSL_KEY_PATH") { 'config/ssl/localhost.key'},
-  cert: ENV.fetch("SSL_CERT_PATH") { 'config/ssl/localhost.crt'}
+ssl_bind "0.0.0.0", "3001", {
+  key: ENV.fetch("SSL_KEY_PATH") { "config/ssl/localhost.key" },
+  cert: ENV.fetch("SSL_CERT_PATH") { "config/ssl/localhost.crt" }
 }
