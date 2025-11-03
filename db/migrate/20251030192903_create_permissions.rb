@@ -11,6 +11,7 @@ class CreatePermissions < ActiveRecord::Migration[8.1]
       t.text :description
 
       # category = db.Column(db.String(50), nullable=False, index=True)  # users, clubs, content, system, etc.
+      # could be enum
       t.string :category, limit: 50, null: false
 
 

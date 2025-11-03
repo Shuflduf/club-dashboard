@@ -59,5 +59,63 @@ class InitializeRbacSystem < ActiveRecord::Migration[8.1]
           perm.category = category
         end
       end
+
+      roles_data = {
+        "super-admin": {
+            'display_name': 'Super Administrator',
+            'description': 'Full system access with all permissions',
+            'is_system_role': False,  # Changed to allow editing
+            'permissions': [perm for perm in permission_objects.keys()]  # All permissions
+        },
+        'admin': {
+            'display_name': 'Administrator',
+            'description': 'General administrative access',
+            'is_system_role': False,  # Changed to allow editing
+            'permissions': [
+                'admin.access_dashboard', 'admin.view_stats', 'admin.view_activity',
+                'admin.manage_api_keys', 'admin.manage_oauth_apps', 'admin.export_data',
+                'admin.view_ip_groups', 'admin.reset_passwords',
+                'users.view', 'users.edit', 'users.suspend', 'users.create', 'users.delete',
+                'clubs.view', 'clubs.edit', 'clubs.delete', 'clubs.create', 'clubs.manage_members', 'clubs.transfer_leadership',
+                'content.view', 'content.edit', 'content.delete', 'content.moderate', 'content.create',
+                'reviews.view', 'reviews.submit', 'reviews.override',
+                'orders.view', 'orders.approve',
+                'system.view_audit_logs', 'system.manage_settings',
+            ]
+        },
+        'users-admin': {
+            'display_name': 'User Administrator',
+            'description': 'Manage users and their roles',
+            'is_system_role': False,  # Changed to allow editing
+            'permissions': [
+                'admin.access_dashboard', 'admin.view_stats', 'admin.view_ip_groups',
+                'admin.reset_passwords', 'admin.export_data',
+                'users.view', 'users.create', 'users.edit', 'users.suspend', 'users.assign_roles', 'users.delete',
+                'system.view_audit_logs',
+            ]
+        },
+        'reviewer': {
+            'display_name': 'Reviewer',
+            'description': 'Review and approve projects',
+            'is_system_role': False,  # Changed to allow editing
+            'permissions': [
+                'admin.access_dashboard', 'admin.view_stats',
+                'reviews.view', 'reviews.submit',
+                'orders.view',
+                'content.view',
+                'clubs.view',
+                'users.view',
+            ]
+        },
+        'user': {
+            'display_name': 'User',
+            'description': 'Basic user with standard permissions',
+            'is_system_role': False,  # Changed to allow editing
+            'permissions': [
+                'content.view', 'content.create',
+                'clubs.view', 'clubs.create',
+            ]
+        },
+    }
   end
 end
