@@ -16,6 +16,7 @@ class AuthenticateController < ApplicationController
       headers: {'Content-Type' => 'application/json'}
     )
 
+
     response = conn.post('/api/openid.connect.token') do |req|
       req.body = {'code' => @code, 'client_secret' => 'value2', 'client_id' => 'value3', 'redirect_uri' => 'value4'}.to_json
     end
